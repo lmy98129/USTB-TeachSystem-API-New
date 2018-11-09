@@ -1,17 +1,31 @@
 'use strict';
 
-const Service = require('egg').Service;
+const { Service } = require('egg');
+const request = require('request-promise').defaults({ jar: true });
 
 class LoginService extends Service {
   async index(data) {
-    const { loginUrl } = this.config.bkthink;
-    const loginResult = await this.ctx.curl(loginUrl, {
+    const { loginUrl, courseScheduleUrl } = this.config.bkthink;
+    return await request({
+      url: loginUrl,
       method: 'POST',
-      data,
-      contentType: 'application/x-www-form-urlencoded',
-      dataType: 'json',
-    });
-    return loginResult.data;
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(() => {
+        return request({
+          url: courseScheduleUrl,
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+          },
+        });
+      })
+      .then(resp => {
+        return resp;
+      });
   }
 }
 

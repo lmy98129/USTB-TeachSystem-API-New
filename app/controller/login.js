@@ -19,7 +19,7 @@ class LoginController extends Controller {
       const loginResult = await ctx.service.login.index(ctx.request.body);
       ctx.body = {
         status: 'success',
-        data: loginResult,
+        data: JSON.parse(loginResult),
       };
       ctx.status = 200;
     } catch (error) {
