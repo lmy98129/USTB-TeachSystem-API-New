@@ -23,9 +23,11 @@ class LoginService extends Service {
           },
         });
       })
-      .then(resp => {
-        return resp;
-      });
+      .then(resp => resp)
+      .catch(err => {
+        this.ctx.logger.error(err);
+        return {err, status: 'failed'}
+      })
   }
 }
 

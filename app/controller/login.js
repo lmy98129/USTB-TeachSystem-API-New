@@ -17,16 +17,25 @@ class LoginController extends Controller {
     // 校验成功则返回
     try {
       const loginResult = await ctx.service.login.index(ctx.request.body);
-      ctx.body = {
-        status: 'success',
-        data: JSON.parse(loginResult),
-      };
-      ctx.status = 200;
+      if (loginResult.status === 'failed') {
+        ctx.body = {
+          status: 'failed',
+        };
+        ctx.status = loginResult.err.statusCode || 200;
+      } else {
+        ctx.body = {
+          status: 'success',
+          data: JSON.parse(loginResult),
+        };
+        ctx.status = 200;
+      }
     } catch (error) {
       ctx.body = {
         status: 'failed',
         error,
       };
+      ctx.status = 200;
+      ctx.logger.error(error);
     }
   }
   async handshake() {
