@@ -2,7 +2,7 @@
 
 module.exports = appInfo => {
 
-  const serverUrl = 'http://student.bethink.com/smvc';
+  const serverUrl = 'http://student.bkthink.com/smvc';
 
   const config = exports = {};
 
