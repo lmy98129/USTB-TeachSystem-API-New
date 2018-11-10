@@ -11,3 +11,6 @@ run/
 *.sw*
 *.un~
 test.config.js
+excludefiles
+config/config.local.js
+config/config.prod.js
