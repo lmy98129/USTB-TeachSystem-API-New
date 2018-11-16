@@ -1,4 +1,5 @@
 'use strict';
+const path = require('path');
 
 module.exports = appInfo => {
 
@@ -35,6 +36,11 @@ module.exports = appInfo => {
       headerName: 'csrftoken',
     },
   };
+
+  config.view = {
+    root: path.join(appInfo.baseDir, 'app/public'),
+    defaultViewEngine: 'nunjucks',
+  }
 
   return config;
 };
