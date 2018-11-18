@@ -21,6 +21,7 @@ module.exports = appInfo => {
     serverUrl,
     loginUrl: `${serverUrl}/StuLoginService/loginStudentByIdentity.json`,
     courseScheduleUrl: `${serverUrl}/StuQueryInfoService/viewStuCourseSchedule.json`,
+    todayUrl: `${serverUrl}/CommonService/obtainCommonInfo.json`
   };
 
   config.cors = {

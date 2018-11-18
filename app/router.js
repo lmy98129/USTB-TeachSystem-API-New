@@ -9,4 +9,5 @@ module.exports = app => {
   router.post('/login', controller.login.index);
   router.get('/login', controller.login.handshake);
   router.get('/app', controller.course.index);
+  router.post('/today', controller.today.index);
 };
