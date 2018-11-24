@@ -2,13 +2,13 @@
 const { Controller } = require('egg')
 
 class BaseController extends Controller {
-  async common(service, createRule) {
+  async common(service, createRule, ...params) {
     const ctx = this.ctx;
     // 校验 `ctx.request.body` 的合法性
     ctx.validate(createRule, ctx.request.body);
     // 校验成功则返回
     try {
-      const loginResult = await service.index(ctx.request.body);
+      const loginResult = await ctx.service.login[service](ctx.request.body, ...params);
       if (loginResult.status === 'failed') {
         ctx.body = {
           status: 'failed',

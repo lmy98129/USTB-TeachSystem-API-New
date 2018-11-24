@@ -11,8 +11,8 @@ const createRule = {
 
 class CourseTableController extends BaseController {
   async index() {
-    const ctx = this.ctx;
-    await this.common(ctx.service.table, createRule);
+    const { courseTableUrl } = this.config.bkthink;
+    await this.common('getData', createRule, courseTableUrl);
   }
 }
 

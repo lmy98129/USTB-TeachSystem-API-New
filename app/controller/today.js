@@ -11,8 +11,8 @@ const createRule = {
 
 class TodayController extends BaseController {
   async index() {
-    const ctx = this.ctx;
-    await this.common(ctx.service.today, createRule);
+    const { todayUrl } = this.config.bkthink;
+    await this.common('getData', createRule, todayUrl);
   }
 }
 

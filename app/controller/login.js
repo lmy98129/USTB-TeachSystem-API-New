@@ -11,8 +11,7 @@ const createRule = {
 
 class LoginController extends BaseController {
   async index() {
-    const ctx = this.ctx;
-    await this.common(ctx.service.login, createRule);
+    await this.common('index', createRule);
   }
   async handshake() {
     this.ctx.body = {
