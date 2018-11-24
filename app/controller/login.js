@@ -1,6 +1,6 @@
 'use strict';
 
-const Controller = require('egg').Controller;
+const BaseController = require('../core/baseController');
 
 const createRule = {
   idNo: 'string',
@@ -9,34 +9,10 @@ const createRule = {
   stuNo: 'string',
 };
 
-class LoginController extends Controller {
+class LoginController extends BaseController {
   async index() {
     const ctx = this.ctx;
-    // 校验 `ctx.request.body` 的合法性
-    ctx.validate(createRule, ctx.request.body);
-    // 校验成功则返回
-    try {
-      const loginResult = await ctx.service.login.index(ctx.request.body);
-      if (loginResult.status === 'failed') {
-        ctx.body = {
-          status: 'failed',
-        };
-        ctx.status = loginResult.err.statusCode || 200;
-      } else {
-        ctx.body = {
-          status: 'success',
-          data: JSON.parse(loginResult),
-        };
-        ctx.status = 200;
-      }
-    } catch (error) {
-      ctx.body = {
-        status: 'failed',
-        error,
-      };
-      ctx.status = 200;
-      ctx.logger.error(error);
-    }
+    await this.common(ctx.service.login, createRule);
   }
   async handshake() {
     this.ctx.body = {

@@ -20,7 +20,7 @@ module.exports = appInfo => {
   config.bkthink = {
     serverUrl,
     loginUrl: `${serverUrl}/StuLoginService/loginStudentByIdentity.json`,
-    courseScheduleUrl: `${serverUrl}/StuQueryInfoService/viewStuCourseSchedule.json`,
+    courseTableUrl: `${serverUrl}/StuQueryInfoService/viewStuCourseSchedule.json`,
     todayUrl: `${serverUrl}/CommonService/obtainCommonInfo.json`
   };
 
