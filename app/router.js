@@ -11,4 +11,5 @@ module.exports = app => {
   router.post('/today', controller.today.index);
   router.get('/login', controller.login.handshake);
   router.post('/login', controller.login.index);
+  router.post('/profile', controller.profile.index);
 };

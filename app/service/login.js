@@ -21,7 +21,7 @@ class LoginService extends Service {
       })
   }
   
-  async getData(data, url) {
+  async getData(data, url, req={}) {
     const { loginUrl } = this.config.bkthink;
     return await request({
       url: loginUrl,
@@ -38,6 +38,7 @@ class LoginService extends Service {
           headers: {
             'Content-Type': 'application/json;charset=UTF-8',
           },
+          body: JSON.stringify(req),
         });
       })
       .then(resp => resp)
